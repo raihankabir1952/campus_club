@@ -1,0 +1,17 @@
+src/
+ ┣ admin/
+ ┃ ┣ dto/
+ ┃ ┃ ┣ create-club.dto.ts
+ ┃ ┃ ┣ update-club.dto.ts
+ ┃ ┣ entities/
+ ┃ ┃ ┣ club.entity.ts
+ ┃ ┃ ┣ event.entity.ts
+ ┃ ┃ ┗ user.entity.ts
+ ┃ ┣ admin.controller.ts
+ ┃ ┣ admin.service.ts
+ ┃ ┗ admin.module.ts
+ ┣ auth/
+ ┃ ┣ jwt-auth.guard.ts
+ ┃ ┣ roles.guard.ts
+ ┃ ┣ roles.decorator.ts
+ ┗ app.module.ts
