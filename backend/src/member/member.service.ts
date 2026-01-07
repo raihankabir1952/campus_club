@@ -10,9 +10,21 @@ import { MemberAddress } from './address.entity';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { PatchMemberDto } from './dto/patch-member.dto';
+import Pusher, * as pusher from 'pusher'; // এটি যোগ করুন(frontend এর জন্য)
 
 @Injectable()
 export class MemberService {
+private pusher=new Pusher
+(
+  {
+    appId: "2099401",
+    key: "ce0131e31a38e14a150f",
+    secret: "3ee93fdb3e56fd2dd9b5",
+    cluster: "ap2",
+    useTLS: true
+  }
+)
+
   constructor(
     @InjectRepository(Member)
     private readonly memberRepository: Repository<Member>,
@@ -61,6 +73,10 @@ export class MemberService {
     });
 
     const savedMember = await this.memberRepository.save(newMember);
+    this.pusher.trigger('member-channel', 'member-added', {
+      message: `Welcome ! ${savedMember.name} , you have been successfully registered.`,
+    });
+
     this.mailService.sendWelcomeEmail(data.email, data.name);
     return savedMember;
   }
