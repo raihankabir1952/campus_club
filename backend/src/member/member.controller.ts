@@ -28,6 +28,7 @@ export class MemberController {
   // getOne(@Param('id') id: number) {
   //   return this.memberService.getMemberById(id);
   // }
+
   // @UseGuards(JwtAuthGuard)
   @Get(':id')
   getOne(
